@@ -13,6 +13,10 @@
             align-items: center;
             min-height: 100vh;
             margin: 0;
+            background-size: cover;
+        }
+        table {
+            background-image: radial-gradient(circle, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
         }
         input[type="number"], td {
             width: 1em;
@@ -30,6 +34,7 @@
         input[type="number"] {
             -moz-appearance: textfield;
         }
+
     </style>
 </head>
 <body>
@@ -54,6 +59,14 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
+        let backgrounds = [
+            "332bbf77-6a4e-4bbb-aabf-dd379def5636.png",
+            "511bf7de-1d8b-46ad-a2a1-b777d39ff5bf.png",
+            "ca9f5875-a8d6-4f9b-b85c-3f1525019f1d.png",
+            "e75e2c04-0c45-4e51-b5fd-df05ff610017.png",
+        ];
+        let random_background = backgrounds[Math.floor(Math.random() * backgrounds.length)];
+        document.body.style.backgroundImage = `url(${random_background})`;
         const inputs = document.querySelectorAll('input[type="number"]');
         inputs[0].focus();
         inputs.forEach((input, index) => {
