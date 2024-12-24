@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>God Jul</title>
+    <style>
+        html {
+            font-size: 96pt;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        input[type="number"], td {
+            width: 1em;
+            text-align: center;
+            font-size: 142pt;
+        }
+        /* For Chrome, Safari, Edge, Opera */
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* For Firefox */
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+    </style>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <td><label for="a">A</label></td>
+        <td><label for="b">B</label></td>
+        <td><label for="c">C</label></td>
+        <td><label for="d">D</label></td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><input type="number" name="a" id="a" min="0" max="9" maxlength="1" placeholder="0" pattern="\d"></td>
+        <td><input type="number" name="b" id="b" min="0" max="9" maxlength="1" placeholder="0" pattern="\d"></td>
+        <td><input type="number" name="c" id="c" min="0" max="9" maxlength="1" placeholder="0" pattern="\d"></td>
+        <td><input type="number" name="d" id="d" min="0" max="9" maxlength="1" placeholder="0" pattern="\d"></td>
+    </tr>
+    </tbody>
+</table>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const inputs = document.querySelectorAll('input[type="number"]');
+        inputs[0].focus();
+        inputs.forEach((input, index) => {
+            // When typing a number
+            input.addEventListener('input', (event) => {
+                input.value = event.data || ''; // Replace input value with the key pressed
+                if (index + 1 < inputs.length) {
+                    inputs[index + 1].focus();
+                }
+                let code = inputs[0].value + inputs[1].value + inputs[2].value + inputs[3].value;
+                if (code === '4832') {
+                    document.body.innerHTML = `<p>
+<marquee>🦌🦌🦌🦌🦌🦌🦌🦌🦌🦌🦌🦌🛷🎅🎄🤶</marquee><br>
+Ni har fått en <b>SPA</b> upplevelse på <b>Sankt Jörgen</b>
+tillsammans eller separat med <b>Samuel</b> och <b>Nina</b>
+någon gång under sen Vintern
+<marquee>🦌🦌🦌🦌🦌🦌🦌🦌🦌🦌🦌🦌🛷🎅🎄🤶</marquee><br>
+</p>
+`;
+                }
+            });
+
+            // Handle backspace to clear and move to the previous field
+            input.addEventListener('keydown', (event) => {
+                if (event.key === 'Backspace' && input.value === '' && index > 0) {
+                    inputs[index - 1].focus();
+                    inputs[index - 1].value = ''; // Clear the previous field
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>
